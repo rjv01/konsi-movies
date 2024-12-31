@@ -16,10 +16,10 @@ export default function Footer() {
         <a href="https://twitter.com" className="hover:text-blue-400 transition duration-300">
           Twitter
         </a>
-        <a href="https://linkedin.com" className="hover:text-blue-400 transition duration-300">
+        <a href="https://www.linkedin.com/in/raj-shekhar-verma-2a292a231/" className="hover:text-blue-400 transition duration-300">
           LinkedIn
         </a>
-        <a href="https://github.com" className="hover:text-blue-400 transition duration-300">
+        <a href="https://github.com/rjv01" className="hover:text-blue-400 transition duration-300">
           GitHub
         </a>
       </div>
