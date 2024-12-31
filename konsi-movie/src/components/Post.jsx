@@ -5,7 +5,6 @@ export default function Post() {
   const [formData, setFormData] = useState({
     name: '',
     director: '',
-    review: '',
     rating: '',
     genre: '',
     about: '',
@@ -21,20 +20,12 @@ export default function Post() {
     });
   };
 
-  // Handle file input change
-  const handleFileChange = (e) => {
-    const { files } = e.target;
-    setFormData({
-      ...formData,
-      image: files[0]
-    });
-  };
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const { name, director, review, rating, genre, about, urview } = formData;
+    const { name, director, rating, genre, about, urview } = formData;
   
     if (!name || !director || !rating || !genre || !about || !urview) {
       alert('Please fill in all required fields.');
@@ -45,7 +36,6 @@ export default function Post() {
       const response = await axios.post('http://localhost:3000/movies/api/posting', {
         name,
         director,
-        review,
         rating,
         genre,
         about,
@@ -84,14 +74,6 @@ export default function Post() {
           value={formData.director}
           onChange={handleChange}
           className="w-full mb-4 p-2 border rounded"
-          required
-        />
-        <textarea
-          name="review"
-          placeholder="Enter Review"
-          value={formData.review}
-          onChange={handleChange}
-          className="w-full mb-4 p-2 border rounded h-24 resize-none"
           required
         />
         <input

@@ -60,13 +60,12 @@ export default function Home() {
             >
               <div>
                 <header className="text-xl font-bold mb-2">{movie.name}</header>
-                <p><strong>Director:</strong> {movie.director}</p>
-                <p><strong>Review:</strong> {movie.review}</p>
-                <p><strong>Rating:</strong> {movie.rating} / 5</p>
-                <p><strong>Genre:</strong> {movie.genre}</p>
-                <p><strong>About:</strong> {movie.about}</p>
-                <p><strong>Your View:</strong> {movie.urview}</p>
-                <p><strong>Reports Left:</strong> {movie.reportCount}</p>
+                <p className='underline'><strong><span className='rounded-[15px] bg-blue-800'>Director:</span></strong> {movie.director}</p>
+                <p className='underline'><strong><span className='rounded-[15px] bg-blue-800'>Rating:</span></strong> {movie.rating} / 5</p>
+                <p className='underline'><strong><span className='rounded-[15px] bg-blue-800'>Genre:</span></strong> {movie.genre}</p>
+                <p className='underline'><strong><span className='rounded-[15px] bg-blue-800'>About:</span></strong> {movie.about}</p>
+                <p className='underline'><strong><span className='rounded-[15px] bg-blue-800'>Your View:</span></strong> {movie.urview}</p>
+                <p className='underline'><strong><span className='rounded-[15px] bg-blue-800'>Reports Left:</span></strong> {movie.reportCount}</p>
                 <button
                   className="text-red-600 p-3 hover:border rounded-full"
                   onClick={() => handleReport(movie._id)}

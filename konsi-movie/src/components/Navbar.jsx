@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../assets/Logo.png';
 
 export default function Navbar() {
   return (
     <div className="bg-slate-900 flex justify-between items-center p-1">
       {/* Logo Section */}
-      <div className="text-white font-bold text-2xl">
-        <Link to="/">Logo</Link>
+      <div>
+        <Link to="/"><img src={Logo} alt="Img" className='w-24 h-auto rounded-full hover:bg-blue-500 duration-200'/></Link>
       </div>
 
       {/* Search Section */}
