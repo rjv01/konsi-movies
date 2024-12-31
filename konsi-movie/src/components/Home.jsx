@@ -9,7 +9,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchMovies() {
       try {
-        const response = await axios.get('http://localhost:3000/movies/api/all');
+        const response = await axios.get('https://konsi-movie-backend-2.onrender.com');
         const moviesWithReportCount = response.data.map((movie) => ({
           ...movie,
           reportCount: 5, //report count of 5
@@ -41,7 +41,7 @@ export default function Home() {
 
   const reportMovie = async (movieId) => {
     try {
-      const response = await axios.post(`http://localhost:3000/movies/api/report/${movieId}`);
+      const response = await axios.post(`https://konsi-movie-backend-2.onrender.com/${movieId}`);
       console.log('Response from backend:', response.data);
     } catch (error) {
       console.error('Frontend Error reporting movie:', error);

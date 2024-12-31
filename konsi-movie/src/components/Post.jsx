@@ -33,7 +33,7 @@ export default function Post() {
     }
   
     try {
-      const response = await axios.post('http://localhost:3000/movies/api/posting', {
+      const response = await axios.post('https://konsi-movie-backend-2.onrender.com', {
         name,
         director,
         rating,

@@ -16,7 +16,7 @@ export default function Aboutus() {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/movies/api/message', { // Fixed URL
+      const response = await axios.post('https://konsi-movie-backend-2.onrender.com', { // Fixed URL
         title,
         message, // Ensure field name matches schema
       }, {
