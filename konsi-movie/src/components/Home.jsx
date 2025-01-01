@@ -66,12 +66,12 @@ export default function Home() {
                 <p className='underline'><strong><span className='rounded-[15px] bg-blue-800'>About:</span></strong> {movie.about}</p>
                 <p className='underline'><strong><span className='rounded-[15px] bg-blue-800'>Your View:</span></strong> {movie.urview}</p>
                 <p className='underline'><strong><span className='rounded-[15px] bg-blue-800'>Reports Left:</span></strong> {movie.reportCount}</p>
-                <button
+                {/* <button
                   className="text-red-600 p-3 hover:border rounded-full"
                   onClick={() => handleReport(movie._id)}
                 >
                   Report
-                </button>
+                </button> */}
               </div>
             </div>
           ))
