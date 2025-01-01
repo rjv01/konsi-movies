@@ -38,21 +38,22 @@ export default function Aboutus() {
   };
 
   return (
-    <div className="min-h-screen text-white bg-blue-400 flex flex-col items-center p-6">
+    <div className="min-h-screen text-white bgGrid flex flex-col items-center p-6">
       {/* Who we are Section */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-8 text-blue-400">
         <h1 className="text-4xl font-bold mb-4">Who We Are</h1>
-        <p className="text-lg">We are a team passionate about providing excellent services. Our platform connects customers with servicemen for home maintenance tasks.</p>
+        <p className="text-lg">We are a team passionate about providing excellent services.</p>
+        <p className="text-lg">If you have any issues, feel free to contact us!</p>
       </div>
 
       {/* Form Section */}
-      <div className="bg-white text-black p-6 rounded-lg shadow-lg w-full max-w-xl">
-        <h2 className="text-2xl font-semibold mb-4">Tell Us More</h2>
+      <div className="bg-blue-400 text-black p-6 rounded-lg shadow-lg w-full max-w-xl">
+        <h2 className="text-2xl font-semibold mb-4 text-white">Tell Us More</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
             name="title" // Bind name to state
-            placeholder="Title"
+            placeholder="Title, Name"
             value={formData.title} // Controlled input
             onChange={handleInputChange} // Handle changes
             className="w-full p-3 rounded-md border-2 border-gray-300 focus:outline-none focus:border-blue-500"
@@ -67,7 +68,7 @@ export default function Aboutus() {
           />
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 transition duration-300"
+            className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-800 transition duration-300"
           >
             Send
           </button>
@@ -75,8 +76,8 @@ export default function Aboutus() {
       </div>
 
       {/* Contact Info */}
-      <div className="mt-8 text-center">
-        <p>If you have any questions, feel free to contact us at <a href="mailto:verma.rajshekhar1@gmail.com" className="text-blue-600">verma.rajshekhar1@gmail.com</a></p>
+      <div className="mt-8 text-center text-blue-400">
+        <p>If you have any questions, feel free to contact us at <a href="mailto:verma.rajshekhar1@gmail.com" className="text-blue-600 text-lg underline">verma.rajshekhar1@gmail.com</a></p>
       </div>
     </div>
   );

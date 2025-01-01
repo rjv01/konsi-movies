@@ -53,15 +53,16 @@ export default function Post() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center text-center bg-blue-400">
-      <form onSubmit={handleSubmit} className="p-6 bg-white rounded-lg shadow-lg w-[500px]">
-        <header className="text-2xl font-bold mb-4 text-slate-900">
+    <div className="min-h-screen flex justify-center items-center text-center bgGrid">
+      <form onSubmit={handleSubmit} className="p-6 bg-blue-400 rounded-lg shadow-lg w-[500px]">
+      <h1 className="text-3xl font-bold mb-4 text-white">Add your own review</h1>
+        {/* <header className="text-2xl font-bold mb-4 text-slate-900">
           Post Your Movies/Series Detail
-        </header>
+        </header> */}
         <input
           type="text"
           name="name"
-          placeholder="Enter Name of Movie/Series"
+          placeholder="Movie/Series's Name"
           value={formData.name}
           onChange={handleChange}
           className="w-full mb-4 p-2 border rounded"
@@ -70,7 +71,7 @@ export default function Post() {
         <input
           type="text"
           name="director"
-          placeholder="Enter Director's Name"
+          placeholder="Director's Name"
           value={formData.director}
           onChange={handleChange}
           className="w-full mb-4 p-2 border rounded"
@@ -79,7 +80,7 @@ export default function Post() {
         <input
           type="text"
           name="rating"
-          placeholder="Enter Rating (out of 5)"
+          placeholder="Rating (out of 5)"
           value={formData.rating}
           onChange={handleChange}
           className="w-full mb-4 p-2 border rounded"
@@ -88,7 +89,7 @@ export default function Post() {
         <input
           type="text"
           name="genre"
-          placeholder="Enter Genre"
+          placeholder="Genre"
           value={formData.genre}
           onChange={handleChange}
           className="w-full mb-4 p-2 border rounded"
@@ -112,7 +113,7 @@ export default function Post() {
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white px-6 py-2 rounded shadow-md hover:bg-blue-600 transition"
+          className="bg-blue-600 text-white px-6 py-2 rounded shadow-md hover:bg-blue-800 transition"
         >
           Post
         </button>

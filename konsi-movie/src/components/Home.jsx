@@ -50,13 +50,17 @@ export default function Home() {
 
   return (
     <div className="min-h-screen p-6 flex flex-col items-center bgGrid">
+      <h1 className="text-3xl font-bold mb-4 text-blue-400">Welcome to the Moive Review App</h1>
+      <p className="text-lg text-center">Movie <span className='text-blue-800 text-2xl underline'>night</span> plans? Can't decide what to watch?</p>
+      <p className="text-lg text-center"> <span className='text-blue-800 text-2xl underline'>Konsi-Movie</span> helps you find, review, and share your favorite movies and series!</p>
+
       <h1 className="text-center text-3xl font-bold mb-10 text-white">Movie List</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 justify-center">
         {Array.isArray(movies) && movies.length > 0 ? (
           movies.map((movie) => (
             <div
               key={movie._id}
-              className="relative text-white w-[400px] rounded-lg shadow-lg bg-black p-4 hover:shadow-2xl transition-shadow"
+              className="relative text-white w-[400px] rounded-lg shadow-lg bg-slate-900 p-4 hover:shadow-2xl transition-shadow"
             >
               <div>
                 <header className="text-xl font-bold mb-2">{movie.name}</header>
