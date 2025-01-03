@@ -80,7 +80,7 @@ export default function Home() {
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-600">Loading Please Wait...</p>
+          <p className="text-gray-600 ">Loading Please Wait...</p>
         )}
       </div>
     </div>
