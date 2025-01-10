@@ -80,7 +80,10 @@ export default function Home() {
             </div>
           ))
         ) : (
-          <p className="text-gray-600 ">Loading Please Wait...</p>
+          <div className="flex flex-col justify-center items-center mt-10">
+            <p className="text-gray-600 text-lg">Loading, Please Wait...</p>
+            <i className="fa-solid fa-gear text-6xl animate-spin mt-4"></i>
+          </div>
         )}
       </div>
     </div>
