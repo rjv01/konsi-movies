@@ -83,7 +83,7 @@ export default function Post() {
     try {
       const response = await axios.post(
         'https://konsi-movie-backend-2.onrender.com/api/posting',
-        trimmedData,
+        {name,director,rating,genre,about,urview},
         {
           headers: { 'Content-Type': 'application/json' },
         }
