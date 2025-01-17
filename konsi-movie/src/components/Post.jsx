@@ -22,35 +22,90 @@ export default function Post() {
 
 
   // Handle form submission
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  
+  //   const { name, director, rating, genre, about, urview } = formData;
+  
+  //   if (!name || !director || !rating || !genre || !about || !urview) {
+  //     alert('Please fill in all required fields.');
+  //     return;
+  //   }
+  
+  //   try {
+  //     const response = await axios.post('https://konsi-movie-backend-2.onrender.com/movies/api/posting', {
+  //       name,
+  //       director,
+  //       rating,
+  //       genre,
+  //       about,
+  //       urview,
+  //     }, {
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       }
+  //     });
+  //     alert('Movie posted successfully:');
+  //     console.log('Movie posted successfully:', response.data);
+  //   } catch (error) {
+  //     console.error('Error posting movie:', error.response?.data || error.message);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
   
     const { name, director, rating, genre, about, urview } = formData;
   
-    if (!name || !director || !rating || !genre || !about || !urview) {
+    // Trim each field to remove extra spaces
+    const trimmedData = {
+      name: name.trim(),
+      director: director.trim(),
+      rating: rating.trim(), // Assuming rating is still a string here
+      genre: genre.trim(),
+      about: about.trim(),
+      urview: urview.trim(),
+    };
+  
+    // Frontend validation
+    if (
+      !trimmedData.name ||
+      !trimmedData.director ||
+      !trimmedData.rating ||
+      !trimmedData.genre ||
+      !trimmedData.about ||
+      !trimmedData.urview
+    ) {
       alert('Please fill in all required fields.');
       return;
     }
   
     try {
-      const response = await axios.post('https://konsi-movie-backend-2.onrender.com/movies/api/posting', {
-        name,
-        director,
-        rating,
-        genre,
-        about,
-        urview,
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
+      const response = await axios.post(
+        'https://konsi-movie-backend-2.onrender.com/api/posting',
+        trimmedData,
+        {
+          headers: { 'Content-Type': 'application/json' },
         }
-      });
-      alert('Movie posted successfully:');
+      );
+  
+      alert('Movie posted successfully');
       console.log('Movie posted successfully:', response.data);
+  
+      // Reset form after successful submission
+      setFormData({
+        name: '',
+        director: '',
+        rating: '',
+        genre: '',
+        about: '',
+        urview: '',
+      });
     } catch (error) {
       console.error('Error posting movie:', error.response?.data || error.message);
     }
   };
+  
 
   return (
     <div className="min-h-screen flex justify-center items-center text-center bgGrid">

@@ -5,37 +5,82 @@ export default function Aboutus() {
   const [formData, setFormData] = useState({ title: '', message: '' });
 
   // Handle form submission
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   const { title, message } = formData;
+
+  //   if (!title || !message) {
+  //     alert('Please fill in all required fields');
+  //     return;
+  //   }
+
+  //   try {
+  //     const response = await axios.post('https://konsi-movie-backend-2.onrender.com/movies/api/message', { // Fixed URL
+  //       title,
+  //       message, // Ensure field name matches schema
+  //     }, {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     });
+  //     alert('Message posted successfully');
+  //     console.log('Message posted successfully:', response.data);
+  //   } catch (error) {
+  //     console.error('Error posting message:', error.response?.data || error.message);
+  //   }
+  // };
+
+  // // Handle input changes
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({ ...formData, [name]: value });
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const { title, message } = formData;
-
+  
+    // Trim inputs before validation
+    const trimmedData = {
+      title: formData.title?.trim(),
+      message: formData.message?.trim(),
+    };
+  
+    const { title, message } = trimmedData;
+  
+    // Validate trimmed data
     if (!title || !message) {
       alert('Please fill in all required fields');
       return;
     }
-
+  
     try {
-      const response = await axios.post('https://konsi-movie-backend-2.onrender.com/movies/api/message', { // Fixed URL
-        title,
-        message, // Ensure field name matches schema
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await axios.post(
+        'https://konsi-movie-backend-2.onrender.com/movies/api/message',
+        { title, message },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+  
       alert('Message posted successfully');
       console.log('Message posted successfully:', response.data);
+  
+      // Reset form after successful submission
+      setFormData({ title: '', message: '' });
     } catch (error) {
       console.error('Error posting message:', error.response?.data || error.message);
     }
   };
-
+  
   // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  
 
   return (
     <div className="min-h-screen text-white bgGrid flex flex-col items-center p-6">
