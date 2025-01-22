@@ -50,7 +50,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen p-6 flex flex-col items-center bgGrid">
-      <h1 className="text-3xl font-bold mb-4 text-blue-400">Welcome to the Moive Review App</h1>
+      <h1 className="text-3xl font-bold mb-4 text-blue-400">Welcome to the Movie Review App</h1>
       <p className="text-lg text-center">Movie <span className='text-blue-800 text-2xl underline'>night</span> plans? Can't decide what to watch?</p>
       <p className="text-lg text-center"> <span className='text-blue-800 text-2xl underline'>Konsi-Movie</span> helps you find, review, and share your favorite movies and series!</p>
 
