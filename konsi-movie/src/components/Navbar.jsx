@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../assets/Logo.png';
+import Search from './Search';
 
 export default function Navbar() {
   return (
@@ -11,16 +12,18 @@ export default function Navbar() {
       </div>
 
       {/* Search Section */}
-    <div className="flex items-center bg-white text-slate-900 px-[5%] py-[1px] rounded-full shadow-md">
-    <input
+    <Search />
+    {/* <div className="flex items-center bg-white text-slate-900 px-[5%] py-[1px] rounded-full shadow-md"> */}
+    {/* <input
         type="text"
         placeholder="Search"
         className="outline-none text-slate-900 p-[1px] rounded-l-full w-[300px] text-2xl"
-    />
-    <button className="p-3">
+        // onChange={handleChange()}
+    /> */}
+    {/* <button className="p-3">
         <i className="fa-solid fa-magnifying-glass text-slate-900 text-2xl"></i>
     </button>
-    </div>
+    </div> */}
 
 
       {/* Navigation Links */}
