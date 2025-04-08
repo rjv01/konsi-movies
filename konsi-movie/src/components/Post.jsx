@@ -92,7 +92,7 @@ export default function Post() {
       
   
       alert('Movie posted successfully');
-      console.log('Movie posted successfully:', response.data);
+      // console.log('Movie posted successfully:', response.data);
   
       // Reset form after successful submission
       setFormData({

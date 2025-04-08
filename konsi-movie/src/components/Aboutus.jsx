@@ -67,7 +67,7 @@ export default function Aboutus() {
       );
   
       alert('Message posted successfully');
-      console.log('Message posted successfully:', response.data);
+      // console.log('Message posted successfully:', response.data);
   
       // Reset form after successful submission
       setFormData({ title: '', message: '' });
