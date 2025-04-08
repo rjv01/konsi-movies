@@ -34,7 +34,7 @@ export default function Post() {
   //   }
   
   //   try {
-  //     const response = await axios.post(`${process.env.backend_url}/movies/api/posting`, {
+  //     const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/movies/api/posting`, {
   //       name,
   //       director,
   //       rating,
@@ -83,7 +83,7 @@ export default function Post() {
   
     try {
       const response = await axios.post(
-        `${process.env.backend_url}/movies/api/posting`,
+        `${import.meta.env.VITE_BACKEND_URL}/movies/api/posting`,
         trimmedData,
         {
           headers: { 'Content-Type': 'application/json' },

@@ -16,7 +16,7 @@ export default function Aboutus() {
   //   }
 
   //   try {
-  //     const response = await axios.post(`${process.env.backend_url}/movies/api/message`, { // Fixed URL
+  //     const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/movies/api/message`, { // Fixed URL
   //       title,
   //       message, // Ensure field name matches schema
   //     }, {
@@ -57,7 +57,7 @@ export default function Aboutus() {
   
     try {
       const response = await axios.post(
-        `${process.env.backend_url}/movies/api/message`,
+        `${import.meta.env.VITE_BACKEND_URL}/movies/api/message`,
         { title, message },
         {
           headers: {
