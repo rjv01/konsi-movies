@@ -2,7 +2,7 @@ import React, { useState, useEffect,useContext } from 'react';
 import '../index.css';
 import axios from 'axios'; // API requests
 import MovieArrayContext from '../context/MovieContext';
-
+import { configDotenv } from 'dotenv';
 export default function Home() {
   // const [movies, setMovies] = useState([]);
   // const [search,setSearch] = useState([]);
@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchMovies() {
       try {
-        const response = await axios.get('https://konsi-movie-backend-2.onrender.com/movies/api/all');
+        const response = await axios.get(`${process.env.backend_url}/movies/api/all`);
         const moviesWithReportCount = response.data.map((movie) => ({
           ...movie,
           reportCount: 5, //report count of 5
@@ -47,7 +47,7 @@ export default function Home() {
 
   const reportMovie = async (movieId) => {
     try {
-      const response = await axios.post(`https://konsi-movie-backend-2.onrender.com/movies/api/report/${movieId}`);
+      const response = await axios.post(`${process.env.backend_url}/movies/api/report/${movieId}`);
       console.log('Response from backend:', response.data);
     } catch (error) {
       console.error('Frontend Error reporting movie:', error);

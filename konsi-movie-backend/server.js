@@ -32,4 +32,4 @@ app.listen(PORT, () => {
 //POST posting http://localhost:3000/movies/api/posting
 //POST report http://localhost:3000/movies/api/report/${movieId}
 //PUST update ​http://localhost:3000/movies/api/update/${movieID}
-//DELETE delete ​http://localhost:3000/movies/api/update/${movieID}
+//DELETE delete ​http://localhost:3000/movies/api/delete/${movieID}

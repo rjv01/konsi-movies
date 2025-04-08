@@ -16,7 +16,7 @@ export default function Aboutus() {
   //   }
 
   //   try {
-  //     const response = await axios.post('https://konsi-movie-backend-2.onrender.com/movies/api/message', { // Fixed URL
+  //     const response = await axios.post(`${process.env.backend_url}/movies/api/message`, { // Fixed URL
   //       title,
   //       message, // Ensure field name matches schema
   //     }, {
@@ -57,7 +57,7 @@ export default function Aboutus() {
   
     try {
       const response = await axios.post(
-        'https://konsi-movie-backend-2.onrender.com/movies/api/message',
+        `${process.env.backend_url}/movies/api/message`,
         { title, message },
         {
           headers: {
