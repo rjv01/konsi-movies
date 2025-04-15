@@ -51,14 +51,19 @@ export default function Register() {
 
             const response = await axios.post(
                 `${import.meta.env.VITE_BACKEND_URL}/users/api/register`,
-                formDataToSend,
                 {
-                    headers:{
-                        "Content-Type":"application/json",
-                    },
-                    withCredentials:true,
+                  name: trimmedData.name,
+                  email: trimmedData.email,
+                  password: trimmedData.password,
+                },
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  withCredentials: true,
                 }
             );
+              
             const {token} = response.data;
 
             localStorage.setItem("token",token);
