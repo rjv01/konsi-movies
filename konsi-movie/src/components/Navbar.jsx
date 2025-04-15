@@ -99,8 +99,6 @@ export default function Navbar() {
         <Link to="/" className="text-white p-4 hover:text-blue-400">Home</Link>
         <Link to="/aboutus" className="text-white p-4 hover:text-blue-400">About Us</Link>
 
-        {isLoggedIn ? (
-          <>
             <Link
               to="/post"
               className="text-white p-4 hover:text-blue-400"
@@ -108,6 +106,8 @@ export default function Navbar() {
             >
               Post
             </Link>
+        {isLoggedIn ? (
+          <>
             <button
               onClick={handleLogout}
               className="text-white p-4 hover:text-red-400"

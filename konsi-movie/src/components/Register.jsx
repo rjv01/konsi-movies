@@ -19,6 +19,14 @@ export default function Register() {
             navigate("/");
     },[navigate]);
 
+    const handleChange = (e)=>{
+        const {name,value} = e.target;
+        setFormData({
+            ...formData,
+            [name]:value,
+        });
+    };
+
     const handleSubmit =async (e)=>{
         e.preventDefault();
         const {name,email,password,confirmPassword} = formData;
@@ -30,7 +38,7 @@ export default function Register() {
             confirmPassword:confirmPassword.trim(),
         };
 
-        console.log(JSON.stringify({ name, email, password, confirmPassword }));
+        // console.log(JSON.stringify({ name, email, password, confirmPassword }));
         
         if(!trimmedData.name || !trimmedData.email || !trimmedData.password || !trimmedData.confirmPassword){
             alert("Please fill in the required fields");
@@ -83,14 +91,6 @@ export default function Register() {
             console.error("Error in register:", error.response?.data || error.message);
             alert(error.response?.data?.message || "Registration failed.");
         }
-    };
-
-    const handleChange = (e)=>{
-        const {name,value} = e.target;
-        setFormData({
-            ...formData,
-            [name]:value,
-        });
     };
 
     return (
@@ -147,7 +147,7 @@ export default function Register() {
                     />
                 </div>
                 <button
-                    type='submit'
+                    type="submit"
                     className="bg-blue-600 text-white px-6 py-2 rounded shadow-md hover:bg-blue-800 transition"
                 >
                     Create
