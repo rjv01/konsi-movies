@@ -50,7 +50,7 @@ export default function Register() {
             formDataToSend.append("confirmPassword", trimmedData.confirmPassword);
 
             const response = await axios.post(
-                "http://localhost:3000/users/api/register",
+                `${import.meta.env.VITE_BACKEND_URL}/users/api/register`,
                 formDataToSend,
                 {
                     headers:{
