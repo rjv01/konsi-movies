@@ -6,6 +6,7 @@ import Aboutus from './components/Aboutus';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import Register from './components/Register';
+import AdminLogin from './components/AdminLogin';
 
 import {MovieContext} from './context/MovieContext';
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/post" element={<Post />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/adminlogin" element={<AdminLogin />} />
         </Routes>
         <Footer />
       </Router>

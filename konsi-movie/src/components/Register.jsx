@@ -150,13 +150,13 @@ export default function Register() {
                     type="submit"
                     className="bg-blue-600 text-white px-6 py-2 rounded shadow-md hover:bg-blue-800 transition"
                 >
-                    Create
+                    Register
                 </button>
                 <div className=''>
                     <p className="mt-2 text-lg">
                         Already have an account? 
                         <Link to="/login" className="text-white underline hover:text-black ml-2 duration-200">
-                            Log In Here
+                            Login Here
                         </Link>
                     </p>
                 </div>
