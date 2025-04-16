@@ -7,6 +7,7 @@ export default function Login() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    code:'',
   });
 
   const navigate = useNavigate();
@@ -19,10 +20,11 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { email, password } = formData;
+    const { email, password,code } = formData;
     const trimmedData = {
       email: email.trim(),
       password: password.trim(),
+      code:code.trim(),
     };
 
     if (!trimmedData.email || !trimmedData.password) {
@@ -32,10 +34,12 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/users/api/login`,
+        // `http://localhost:3000/users/api/adminlogin`,
+        `${import.meta.env.VITE_BACKEND_URL}/users/api/adminlogin`,
         {
           email: trimmedData.email,
           password: trimmedData.password,
+          code:trimmedData.code,
         },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -93,6 +97,16 @@ export default function Login() {
               name="password"
               required
               value={formData.password}
+              onChange={handleChange}
+              className="w-full mb-4 p-2 border rounded"
+            />
+            <h1 className='mb-2 text-2xl'>Enter Code</h1>
+            <input
+              type="password"
+              placeholder="Enter code"
+              name="code"
+              required
+              value={formData.code}
               onChange={handleChange}
               className="w-full mb-4 p-2 border rounded"
             />
