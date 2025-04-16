@@ -128,7 +128,7 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/users/api/login`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/login`,
         {
           email: trimmedData.email,
           password: trimmedData.password,

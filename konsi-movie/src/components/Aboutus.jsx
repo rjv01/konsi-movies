@@ -57,7 +57,7 @@ export default function Aboutus() {
   
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/movies/api/message`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/movies/message`,
         { title, message },
         {
           headers: {

@@ -35,7 +35,7 @@ export default function Login() {
     try {
       const response = await axios.post(
         // `http://localhost:3000/users/api/adminlogin`,
-        `${import.meta.env.VITE_BACKEND_URL}/users/api/adminlogin`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/adminlogin`,
         {
           email: trimmedData.email,
           password: trimmedData.password,
