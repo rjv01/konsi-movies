@@ -83,7 +83,7 @@ export default function Post() {
   
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/movies/api/postingmovies`,
+        `${import.meta.env.VITE_BACKEND_URL}/movies/api/posting`,
         trimmedData,
         {
           headers: { 'Content-Type': 'application/json' },
@@ -128,7 +128,7 @@ export default function Post() {
           className="w-full mb-4 p-2 border rounded"
           required
         />
-        <p>Working</p>
+        <p>working</p>
         <input
           type="text"
           name="director"
