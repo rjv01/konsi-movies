@@ -83,14 +83,14 @@ export default function Post() {
   
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/movies/api/posting`,
+        `${import.meta.env.VITE_BACKEND_URL}/movies/api/postingmovies`,
         trimmedData,
         {
           headers: { 'Content-Type': 'application/json' },
         }
       );
-      const data = await response.json();
-      console.log("frontend data:1",data.json());
+      // const data = await response.json();
+      console.log("frontend data:1","movies posting");
   
       alert('Movie posted successfully');
       // console.log('Movie posted successfully:', response.data);
@@ -128,6 +128,7 @@ export default function Post() {
           className="w-full mb-4 p-2 border rounded"
           required
         />
+        <p>Working</p>
         <input
           type="text"
           name="director"
