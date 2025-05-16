@@ -234,7 +234,7 @@ export default function Post() {
     }
 
     try {
-      await axios.get(
+      await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/movies/api/posting`,
         trimmedData,
         { headers: { 'Content-Type': 'application/json' } }
