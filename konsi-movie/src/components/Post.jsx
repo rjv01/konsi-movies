@@ -9,7 +9,7 @@ export default function Post() {
     genre: '',
     about: '',
     urview: '',
-    imgurl: ''
+    // imgurl: ''
   });
 
   // Handle form field changes
@@ -56,13 +56,13 @@ export default function Post() {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const { name, director, rating, genre, about, urview,imgurl } = formData;
+    const { name, director, rating, genre, about, urview } = formData;
   
     // Trim each field to remove extra spaces
     const trimmedData = {
       name: name.trim(),
       director: director.trim(),
-      rating: rating.trim(), // Assuming rating is still a string here
+      rating: rating.trim(),
       genre: genre.trim(),
       about: about.trim(),
       urview: urview.trim(),
@@ -102,7 +102,7 @@ export default function Post() {
         genre: '',
         about: '',
         urview: '',
-        imgurl: '',
+        // imgurl: '',
       });
     } catch (error) {
       console.error('Error posting movie:', error.response?.data || error.message);
@@ -169,13 +169,13 @@ export default function Post() {
           className="w-full mb-4 p-2 border rounded h-24 resize-none"
           required
         />
-        <input
+        {/* <input
           name="imgurl"
           type="text"
           className="w-full mb-4 p-2 border rounded"
           value={formData.imgurl}
-          onChange={handleChange}
-          placeholder='Enter Image Url'/>
+          onChange={handleChange} */}
+          {/* // placeholder='Enter Image Url'/> */}
         <button
           type="submit"
           className="bg-blue-600 text-white px-6 py-2 rounded shadow-md hover:bg-blue-800 transition"
