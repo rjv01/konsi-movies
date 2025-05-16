@@ -83,7 +83,7 @@ export default function Post() {
   
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/movies/api/posting`,
+        `${import.meta.env.VITE_BACKEND_URL}/movies/api/posting123`,
         trimmedData,
         {
           headers: { 'Content-Type': 'application/json' },
