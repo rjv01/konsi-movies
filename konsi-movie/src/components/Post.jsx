@@ -250,7 +250,7 @@ export default function Post() {
         urview: '',
       });
     } catch (error) {
-      console.error('Error posting movie:', error.response?.data || error.message);
+      console.error('Error posting movie: frontend', error.response?.data || error.message);
     }
   };
 
