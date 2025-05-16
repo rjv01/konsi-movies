@@ -83,7 +83,7 @@ export default function Post() {
   
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/movies/api/posting123`,
+        `${import.meta.env.VITE_BACKEND_URL}/movies/api/posting`,
         trimmedData,
         {
           headers: { 'Content-Type': 'application/json' },
@@ -106,6 +106,7 @@ export default function Post() {
       });
     } catch (error) {
       console.error('Error posting movie:', error.response?.data || error.message);
+      console.log(name,director,rating,genre,about,urview);
     }
   };
   
