@@ -89,7 +89,8 @@ export default function Post() {
           headers: { 'Content-Type': 'application/json' },
         }
       );
-      
+      const data = await response.json();
+      console.log("frontend data:1",data.json());
   
       alert('Movie posted successfully');
       // console.log('Movie posted successfully:', response.data);
@@ -106,7 +107,7 @@ export default function Post() {
       });
     } catch (error) {
       console.error('Error posting movie:', error.response?.data || error.message);
-      console.log(name,director,rating,genre,about,urview);
+      console.log("frontend data:2 ",name,director,rating,genre,about,urview);
     }
   };
   
