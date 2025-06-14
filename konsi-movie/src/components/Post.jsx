@@ -217,12 +217,12 @@ export default function Post() {
 
     // Trim inputs
     const trimmedData = {
-      name: formData.name.trim(),
-      director: formData.director.trim(),
-      rating: formData.rating.trim(),
-      genre: formData.genre.trim(),
-      about: formData.about.trim(),
-      urview: formData.urview.trim(),
+      name: formData.name?.trim(),
+      director: formData.director?.trim(),
+      rating: formData.rating?.trim(),
+      genre: formData.genre?.trim(),
+      about: formData.about?.trim(),
+      urview: formData.urview?.trim(),
     };
 
     const { name, director, rating, genre, about, urview } = trimmedData;
@@ -237,7 +237,11 @@ export default function Post() {
       await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/movies/api/posting`,
         trimmedData,
-        { headers: { 'Content-Type': 'application/json' } }
+        { 
+          headers: { 
+            'Content-Type': 'application/json' 
+          },
+        }
       );
 
       alert('Movie posted successfully!');
@@ -256,13 +260,11 @@ export default function Post() {
 
   return (
     <div className="min-h-screen text-white bgGrid flex flex-col items-center p-6">
-      {/* Title Section */}
       <div className="text-center mb-8 text-blue-400">
         <h1 className="text-4xl font-bold mb-4">Post Your Review</h1>
         <p className="text-lg">Share your thoughts on a movie or series you watched!</p>
       </div>
 
-      {/* Form Section */}
       <div className="bg-blue-400 text-black p-6 rounded-lg shadow-lg w-full max-w-xl">
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
