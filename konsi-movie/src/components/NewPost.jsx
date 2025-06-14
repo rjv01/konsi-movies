@@ -15,7 +15,7 @@ export default function NewPost() {
 
         try{
             const response = await axios.post(
-               `${import.meta.env.VITE_BACKEND_URL}/movies/api/newposting`,
+               `${import.meta.env.VITE_BACKEND_URL}/movies/api/rajposting`,
                { name,director,rating,genre,about,urview },
                {
                 headers:{
@@ -79,7 +79,6 @@ export default function NewPost() {
                     onChange={(e)=>setGenre(e.target.value)}
                 />
                 About<textarea
-                    type="text"
                     cols={3}
                     rows={3}
                     value={about}
@@ -89,7 +88,6 @@ export default function NewPost() {
                     onChange={(e)=>setAbout(e.target.value)}
                 />
                 Urview<textarea
-                    type="text"
                     cols={3}
                     rows={3}
                     value={urview}
