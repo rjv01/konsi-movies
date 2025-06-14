@@ -15,7 +15,7 @@ export default function NewPost() {
 
         try{
             const response = await axios.post(
-               `${import.meta.env.VITE_BACKEND_URL}/movies/api/posting`,
+               `${import.meta.env.VITE_BACKEND_URL}/movies/api/newposting`,
                { name,director,rating,genre,about,urview },
                {
                 headers:{
