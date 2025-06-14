@@ -16,12 +16,20 @@ export default function NewPost() {
         try{
             const response = await axios.post(
                `${import.meta.env.VITE_BACKEND_URL}/movies/api/posting`,
-               { name,director,rating,genre,about,urview },
-               {
-                headers:{
-                    'Content-Type':'application/json',
+               {    
+                    name: name.trim(),
+                    director: director.trim(),
+                    rating:rating.trim(),
+                    genre:genre.trim(),
+                    about: about.trim(),
+                    urview: urview.trim()
                 },
-               }
+                {
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
+                    withCredentials: true
+                }
             );
             console.log("Movie posted successfully",response?.data?.message);
             alert("Movie posted successfully");
