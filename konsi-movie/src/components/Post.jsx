@@ -192,10 +192,21 @@
 
 
 //new raj
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Post() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("You must be logged in to post a review");
+      navigate("/login");
+    }
+  }, [navigate]);
+
   const [formData, setFormData] = useState({
     name: '',
     director: '',
@@ -205,99 +216,49 @@ export default function Post() {
     urview: '',
   });
 
-  // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   // Trim inputs
-  //   const trimmedData = {
-  //     name: formData.name?.trim(),
-  //     director: formData.director?.trim(),
-  //     rating: formData.rating?.trim(),
-  //     genre: formData.genre?.trim(),
-  //     about: formData.about?.trim(),
-  //     urview: formData.urview?.trim(),
-  //   };
-
-  //   const { name, director, rating, genre, about, urview } = trimmedData;
-
-  //   // Validate
-  //   if (!name || !director || !rating || !genre || !about || !urview) {
-  //     alert('Please fill in all required fields.');
-  //     return;
-  //   }
-
-  //   try {
-  //     await axios.post(
-  //       `${import.meta.env.VITE_BACKEND_URL}/movies/api/posting`,
-  //       trimmedData,
-  //       { 
-  //         headers: { 
-  //           'Content-Type': 'application/json' 
-  //         },
-  //       }
-  //     );
-
-  //     alert('Movie posted successfully!');
-  //     setFormData({
-  //       name: '',
-  //       director: '',
-  //       rating: '',
-  //       genre: '',
-  //       about: '',
-  //       urview: '',
-  //     });
-  //   } catch (error) {
-  //     const errMsg = error.response?.data?.message || error.message;
-  //     alert("❌ " + errMsg);
-  //     console.error('❌ Error posting movie:', error);
-  //   }
-  // };
-
-  //new 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const { name, director, rating, genre, about, urview } = formData;
+    const { name, director, rating, genre, about, urview } = formData;
+    if (!name || !director || !rating || !genre || !about || !urview) {
+      alert('Please fill in all required fields.');
+      return;
+    }
 
-  // Simple required check
-  if (!name || !director || !rating || !genre || !about || !urview) {
-    alert('Please fill in all required fields.');
-    return;
-  }
+    try {
+      const token = localStorage.getItem("token");
 
-  try {
-    await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/movies/api/posting`,
-      formData,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+      await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/movies/api/posting`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`, // ✅ Include token
+          }
+        }
+      );
 
-    alert('Movie posted successfully!');
-    setFormData({
-      name: '',
-      director: '',
-      rating: '',
-      genre: '',
-      about: '',
-      urview: '',
-    });
-  } catch (error) {
-    const errMsg = error.response?.data?.message || error.message;
-    alert("❌ " + errMsg);
-    console.error('❌ Error posting movie:', error);
-  }
-};
+      alert('Movie posted successfully!');
+      setFormData({
+        name: '',
+        director: '',
+        rating: '',
+        genre: '',
+        about: '',
+        urview: '',
+      });
+    } catch (error) {
+      const errMsg = error.response?.data?.message || error.message;
+      alert("❌ " + errMsg);
+      console.error('❌ Error posting movie:', error);
+    }
+  };
 
 
   return (
