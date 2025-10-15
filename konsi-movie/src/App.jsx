@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
+import ThemePage from './components/ThemePage';
 import Post from './components/Post';
 import NewPost from './components/NewPost';
 import Aboutus from './components/Aboutus';
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/aboutus" element={<Aboutus />} />
+          <Route path="/themepage" element={<ThemePage />} />
           <Route path="/post" element={<Post />} />
           <Route path="/newpost" element={<NewPost />} />
           <Route path="/login" element={<Login />} />
