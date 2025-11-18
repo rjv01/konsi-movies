@@ -208,6 +208,7 @@ export default function Post() {
   }, [navigate]);
 
   const [formData, setFormData] = useState({
+    userName: '',
     name: '',
     director: '',
     rating: '',
@@ -246,6 +247,7 @@ export default function Post() {
 
       alert('Movie posted successfully!');
       setFormData({
+        userName: '',
         name: '',
         director: '',
         rating: '',
@@ -269,7 +271,15 @@ export default function Post() {
       </div>
 
       <div className="bg-blue-400 text-black p-6 rounded-lg shadow-lg w-full max-w-xl">
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6 space-y-4">
+          <input
+            type="text"
+            name="userName"
+            placeholder="Your Name"
+            value={formData.userName}
+            onChange={handleInputChange}
+            className="w-full p-3 rounded-md border-2 border-gray-300 focus:outline-none focus:border-blue-500"
+          />
           <input
             type="text"
             name="name"

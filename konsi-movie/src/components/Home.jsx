@@ -170,8 +170,10 @@ export default function Home() {
         }));
         setMovies(moviesWithReportCount); //  API returns an array of movies
         setSearchLoading(true);
+        // console.log("Movies fetched:");
       } catch (error) {
-        console.error('Error fetching movies:', error);
+        alert(error.response?.data?.message || "Error fetching movies");
+        console.error(error.response?.data?.message || "Error fetching movies");
       }
     }
 
@@ -216,13 +218,13 @@ export default function Home() {
         <span className="text-blue-800 text-2xl underline">Konsi-Movie</span> helps you find, review, and share your favorite movies and series!
       </p>
   
-      <h1 className="text-center text-3xl font-bold mb-10 text-white">Movie List</h1>
+      <h1 className="text-center text-3xl font-bold mb-10 mt-3 text-blue-400">Movie List</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 justify-center">
         {Array.isArray(movies) && movies.length > 0 ? (
           movies.map((movie) => (
             <div
               key={movie._id}
-              className="relative text-white w-[400px] h-[356px] overflow-y-auto rounded-lg shadow-lg bg-slate-900 p-4 hover:shadow-2xl transition-shadow
+              className="border-4 border-blue-400 relative text-white w-[400px] h-[356px] overflow-y-auto rounded-lg shadow-lg bg-slate-900 p-4 hover:shadow-2xl transition-shadow
               bg-cover"
               // <div>
               style={{ backgroundImage: `url(${movie.imgurl})` }}
@@ -230,6 +232,8 @@ export default function Home() {
               // </div>
             >
               <div>
+                {/* <img src={movie.imgurl} alt="MovieImg" /> */}
+                <p className='text-white text-lg mb-4'>Posted By: <span className='text-blue-300'>{movie.userName || "Anonymous"}</span></p>
                 <header className="text-xl font-bold mb-2">{movie.name}</header>
                 <p className="underline">
                   <strong>

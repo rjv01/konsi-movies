@@ -164,7 +164,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bgGrid flex flex-col justify-center items-center text-center">
+    <div className="min-h-screen bgGrid flex flex-col justify-center items-center ">
     <h1 className='text-3xl font-bold mb-4 text-blue-500'>Login Page</h1>
       <div className='m-2 p-2'>
         <form
@@ -172,7 +172,7 @@ export default function Login() {
           onSubmit={handleSubmit} method="post">
           {/* <h1>Working ON UI</h1> */}
           <div>
-            <h1 className='mb-2 text-2xl'>Enter Email</h1>
+            <h1 className='mb-2 text-2xl'>Email</h1>
             <input
               type="text"
               placeholder="Enter email"
@@ -180,9 +180,9 @@ export default function Login() {
               required
               value={formData.email}
               onChange={handleChange}
-              className="w-full mb-4 p-2 border rounded"
+              className="w-full mb-4 p-2 border-2 border-black rounded-lg text-lg"
             />
-            <h1 className='mb-2 text-2xl'>Enter Password</h1>
+            <h1 className='mb-2 text-2xl'>Password</h1>
             <input
               type="password"
               placeholder="Enter password"
@@ -190,10 +190,10 @@ export default function Login() {
               required
               value={formData.password}
               onChange={handleChange}
-              className="w-full mb-4 p-2 border rounded"
+              className="w-full mb-4 p-2 border-2 border-black rounded-lg text-lg"
             />
             <button
-              className="bg-blue-600 text-white px-6 py-2 rounded shadow-md hover:bg-blue-800 transition"
+              className="bg-blue-600 text-xl mb-3 text-white px-6 py-2 w-full mt-4 rounded shadow-md hover:bg-blue-800 transition"
               type="submit">Login</button>
           </div>
           <div className=''>
