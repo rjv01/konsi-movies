@@ -150,12 +150,14 @@ import React, { useState, useEffect,useContext } from 'react';
 import '../index.css';
 import axios from 'axios'; // API requests
 import MovieArrayContext from '../context/MovieContext';
+import ChatWithAI from './ChatWithAI';
 
 export default function Home() {
   // const [movies, setMovies] = useState([]);
   // const [search,setSearch] = useState([]);
   
   const [searchLoading,setSearchLoading] = useState(false);
+  const [openModal,setOpenModal] = useState(true);
   
 
   const {movies,setMovies,copyMovies,setCopyMovies} = useContext(MovieArrayContext); 
@@ -207,9 +209,28 @@ export default function Home() {
 
   return (
     <div className="min-h-screen p-6 flex flex-col items-center bgGrid">
-      <h1 className="text-3xl font-bold mb-4 text-blue-400">
-        Welcome to the Movie Review App
-      </h1>
+      <div className='flex w-full max-w-6xl justify-between '>
+        <div 
+          className={`${openModal} ? relative flex-col justify-center items-center cursor-pointer bg-red-500: hidden`}
+          onClick={()=>setOpenModal(!openModal)}
+        >
+          <img 
+              src="./AIicon.webp" 
+              alt="img"
+              className='h-20 w-20'
+          />
+          <p className='text-sm text-blue-400 font-bold'>Chat With Ai</p>
+        </div>
+        {
+          openModal && (
+            <ChatWithAI openModal={openModal}/>
+          )
+        }
+        <h1 className="text-3xl font-bold mb-4 text-blue-400 ">
+          Welcome to the Movie Review App
+        </h1>
+
+      </div>
       <p className="text-lg text-center">
         Movie{" "}
         <span className="text-blue-800 text-2xl underline">night</span> plans? Can't decide what to watch?
