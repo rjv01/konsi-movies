@@ -146,180 +146,425 @@
 // }
 
 // new raj
-import React, { useState, useEffect,useContext } from 'react';
-import '../index.css';
-import axios from 'axios'; // API requests
-import MovieArrayContext from '../context/MovieContext';
-import ChatWithAI from './ChatWithAI';
+// import React, { useState, useEffect,useContext } from 'react';
+// import '../index.css';
+// import axios from 'axios'; // API requests
+// import MovieArrayContext from '../context/MovieContext';
+// import ChatWithAI from './ChatWithAI';
+
+// export default function Home() {
+//   // const [movies, setMovies] = useState([]);
+//   // const [search,setSearch] = useState([]);
+  
+//   const [searchLoading,setSearchLoading] = useState(false);
+//   const [openModal,setOpenModal] = useState(true);
+//   const [recommend,setRecommend] = useState(false);
+//   const [answer,setAnswer] = useState("");
+//   const [raj,setRaj] = useState("");
+
+//   const {movies,setMovies,copyMovies,setCopyMovies} = useContext(MovieArrayContext); 
+//   // Fetch movies when the component mounts
+//   useEffect(() => {
+//     async function fetchMovies() {
+//       try {
+//         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/movies/api/all`);
+//         const moviesWithReportCount = response.data.map((movie) => ({
+//           ...movie,
+//           reportCount: 5, //report count of 5
+//         }));
+//         setMovies(moviesWithReportCount); //  API returns an array of movies
+//         setSearchLoading(true);
+//         // console.log("Movies fetched:");
+//       } catch (error) {
+//         alert(error.response?.data?.message || "Error fetching movies");
+//         console.error(error.response?.data?.message || "Error fetching movies");
+//       }
+//     }
+
+//     fetchMovies();
+//   }, [setSearchLoading]);
+
+//   const handleSendMoviesDataToAi = async(movieName,movieGenre)=>{
+//     // setRaj()
+//     try {
+//       setSearchLoading(false);
+//       const response = await axios.post(`
+//         ${import.meta.env.VITE_BACKEND_URL}/movieai/api/sendmoviesdata`,
+//         { movieName, movieGenre },
+//         // { movieGenre },
+//         {
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             }
+//         });
+//         setAnswer(response.data?.output);
+//         // console.log(response.data?.output);
+//     } catch (error) {
+//       console.log(error.response?.data?.message || "Error in sending movie data");
+//     } finally{
+//       setSearchLoading(false);
+//     }
+//   }
+
+  
+
+//   return (
+//     <div className="min-h-screen p-6 flex flex-col items-center bgGrid">
+//       <div className='flex w-full max-w-6xl justify-between '>
+//         <div 
+//           className={`${openModal} ? relative flex-col justify-center items-center cursor-pointer bg-red-500: hidden`}
+//           onClick={()=>setOpenModal(!openModal)}
+//         >
+//           <img 
+//               src="./AIicon.webp" 
+//               alt="img"
+//               className='h-20 w-20'
+//           />
+//           <p className='text-sm text-blue-400 font-bold'>Chat With Ai</p>
+//         </div>
+//         {
+//           openModal && (
+//             <ChatWithAI openModal={openModal} recommendMovies={answer}/>
+//           )
+//         }
+//         <h1 className="text-3xl font-bold mb-4 text-blue-400 ">
+//           Welcome to the Movie Review App
+//         </h1>
+
+//       </div>
+//       <p className="text-lg text-center">
+//         Movie{" "}
+//         <span className="text-blue-800 text-2xl underline">night</span> plans? Can't decide what to watch?
+//       </p>
+//       <p className="text-lg text-center">
+//         <span className="text-blue-800 text-2xl underline">Konsi-Movie</span> helps you find, review, and share your favorite movies and series!
+//       </p>
+  
+//       <h1 className="text-center text-3xl font-bold mb-10 mt-3 text-blue-400">Movie List</h1>
+//       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 justify-center">
+//         {Array.isArray(movies) && movies.length > 0 ? (
+//           movies.map((movie) => (
+//             <div
+//               key={movie._id}
+//               className="border-4 border-blue-400 relative text-white w-[400px] h-[356px] overflow-y-auto rounded-lg shadow-lg bg-slate-900 p-4 hover:shadow-2xl transition-shadow
+//               bg-cover"
+//               // <div>
+//               style={{ backgroundImage: `url(${movie.imgurl})` }}
+//               // className="h-64 w-full bg-cover bg-center"
+//               // </div>
+//             >
+//               <div>
+//                 {/* <img src={movie.imgurl} alt="MovieImg" /> */}
+//                 <div className='flex justify-between'>
+//                   <p className='text-white text-lg mb-4'>Posted By: <span className='text-blue-300'>{movie.userName || "Anonymous"}</span></p>
+//                   <p
+//                       onClick={()=>setRecommend(!recommend)}
+//                       className='relative text-blue-500 font-bold text-xl animate-pulse'
+//                     >AI</p>
+//                     {
+//                       recommend && (
+//                         <button
+//                           onClick={()=>handleSendMoviesDataToAi(movie.name,movie.genre)}
+//                           disabled={searchLoading}
+//                           className='absolute bg-slate-600 p-4 m-4 top-20  text-red-500 hover:bg-white hover:text-black transition duration-150'
+//                         >Recommend similar movies</button>
+//                       )
+//                     }
+//                 </div>
+//                 <header className="text-xl font-bold mb-2">{movie.name}</header>
+//                 <p className="underline">
+//                   <strong>
+//                     <span className="rounded-[15px] bg-blue-800">Director:</span>
+//                   </strong>{" "}
+//                   {movie.director}
+//                 </p>
+//                 <p className="underline">
+//                   <strong>
+//                     <span className="rounded-[15px] bg-blue-800">Rating:</span>
+//                   </strong>{" "}
+//                   {movie.rating} / 5
+//                 </p>
+//                 <p className="underline">
+//                   <strong>
+//                     <span className="rounded-[15px] bg-blue-800">Genre:</span>
+//                   </strong>{" "}
+//                   {movie.genre}
+//                 </p>
+//                 <p className="underline">
+//                   <strong>
+//                     <span className="rounded-[15px] bg-blue-800">About:</span>
+//                   </strong>{" "}
+//                   {movie.about}
+//                 </p>
+//                 <p className="underline">
+//                   <strong>
+//                     <span className="rounded-[15px] bg-blue-800">Your View:</span>
+//                   </strong>{" "}
+//                   {movie.urview}
+//                 </p>
+//                 <p className="underline">
+//                   <strong>
+//                     <span className="rounded-[15px] bg-blue-800">Reports Left:</span>
+//                   </strong>{" "}
+//                   {movie.reportCount}
+//                 </p>
+//                 <p className="underline">
+//                   <strong>
+//                     <span className="rounded-[15px] bg-blue-800">Like(s):</span>
+//                   </strong>{" "}
+//                   {movie.likes}
+//                 </p>
+
+              
+//               </div>
+//             </div>
+//           ))
+//         ) : !searchLoading ? (
+//           <div className="flex flex-col justify-center items-center mt-10">
+//             <p className="text-gray-600 text-lg">Loading, Please Wait...</p>
+//             <i className="fa-solid fa-gear text-6xl animate-spin mt-4"></i>
+//           </div>
+//         ) : (
+//           <div>
+//             <p>No data found!</p>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// }
+
+//new AI code
+import { useState, useEffect, useContext } from "react";
+import "../index.css";
+import axios from "axios";
+import MovieArrayContext from "../context/MovieContext";
+import ChatWithAI from "./ChatWithAI";
 
 export default function Home() {
-  // const [movies, setMovies] = useState([]);
-  // const [search,setSearch] = useState([]);
-  
-  const [searchLoading,setSearchLoading] = useState(false);
-  const [openModal,setOpenModal] = useState(true);
-  
+  const [searchLoading, setSearchLoading] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
-  const {movies,setMovies,copyMovies,setCopyMovies} = useContext(MovieArrayContext); 
-  // Fetch movies when the component mounts
+  const [activeMovieId, setActiveMovieId] = useState(null);
+
+  const [answer, setAnswer] = useState("");
+
+  const { movies, setMovies } = useContext(MovieArrayContext);
+
   useEffect(() => {
     async function fetchMovies() {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/movies/api/all`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/movies/api/all`
+        );
+
         const moviesWithReportCount = response.data.map((movie) => ({
           ...movie,
-          reportCount: 5, //report count of 5
+          reportCount: 5,
         }));
-        setMovies(moviesWithReportCount); //  API returns an array of movies
+
+        setMovies(moviesWithReportCount);
         setSearchLoading(true);
-        // console.log("Movies fetched:");
       } catch (error) {
         alert(error.response?.data?.message || "Error fetching movies");
-        console.error(error.response?.data?.message || "Error fetching movies");
       }
     }
 
     fetchMovies();
-  }, [setSearchLoading]);
+  }, [setMovies]);
 
-  // const handleReport = async (movieId) => {
-  //   setMovies((prevMovies) =>
-  //     prevMovies.map((movie) => {
-  //       if (movie._id === movieId) {
-  //         if (movie.reportCount === 1) {
-  //           reportMovie(movieId); // Call backend when reportCount reaches 0
-  //           return null; // Remove movie from the list
-  //         } else {
-  //           return { ...movie, reportCount: movie.reportCount - 1 }; // Decrement reportCount
-  //         }
-  //       }
-  //       return movie;
-  //     }).filter(Boolean) // Remove null entries from the array
-  //   );
-  // };
+  const handleSendMoviesDataToAi = async (movieName, movieGenre) => {
+    if (searchLoading) return;
 
-  const reportMovie = async (movieId) => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/movies/api/report/${movieId}`);
-      console.log('Response from backend:', response.data);
+      setSearchLoading(true);
+
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/movieai/api/sendmoviesdata`,
+        { movieName, movieGenre },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      setAnswer(response.data?.output || "");
     } catch (error) {
-      console.error('Frontend Error reporting movie:', error);
+      console.error("Error in sending movie data");
+    } finally {
+      setSearchLoading(false);
     }
   };
 
   return (
     <div className="min-h-screen p-6 flex flex-col items-center bgGrid">
-      <div className='flex w-full max-w-6xl justify-between '>
-        <div 
-          className={`${openModal} ? relative flex-col justify-center items-center cursor-pointer bg-red-500: hidden`}
-          onClick={()=>setOpenModal(!openModal)}
+      <div className="flex w-full max-w-6xl justify-between items-start">
+        <div
+          className="flex flex-col items-center cursor-pointer"
+          onClick={() => setOpenModal(!openModal)}
         >
-          <img 
-              src="./AIicon.webp" 
-              alt="img"
-              className='h-20 w-20'
-          />
-          <p className='text-sm text-blue-400 font-bold'>Chat With Ai</p>
+          <img src="./AIicon.webp" alt="AI" className="h-20 w-20" />
+          <p className="text-sm text-blue-400 font-bold">
+            {openModal ? "Close AI" : "Chat With AI"}
+          </p>
         </div>
-        {
-          openModal && (
-            <ChatWithAI openModal={openModal}/>
-          )
-        }
-        <h1 className="text-3xl font-bold mb-4 text-blue-400 ">
+
+        {openModal && (
+          <ChatWithAI openModal={openModal} recommendMovies={answer} onClose={()=>setOpenModal(!openModal)}/>
+        )}
+
+        <h1 className="text-3xl font-bold text-blue-400">
           Welcome to the Movie Review App
         </h1>
-
       </div>
+
       <p className="text-lg text-center">
         Movie{" "}
-        <span className="text-blue-800 text-2xl underline">night</span> plans? Can't decide what to watch?
+        <span className="text-blue-800 text-2xl underline">night</span> plans?
+        Can't decide what to watch?
       </p>
       <p className="text-lg text-center">
-        <span className="text-blue-800 text-2xl underline">Konsi-Movie</span> helps you find, review, and share your favorite movies and series!
+        <span className="text-blue-800 text-2xl underline">Konsi-Movie</span>{" "}
+        helps you find, review, and share your favorite movies and series!
       </p>
-  
-      <h1 className="text-center text-3xl font-bold mb-10 mt-3 text-blue-400">Movie List</h1>
+
+      <h1 className="text-center text-3xl font-bold mb-10 mt-4 text-blue-400">
+        Movie List
+      </h1>
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 justify-center">
         {Array.isArray(movies) && movies.length > 0 ? (
           movies.map((movie) => (
             <div
               key={movie._id}
-              className="border-4 border-blue-400 relative text-white w-[400px] h-[356px] overflow-y-auto rounded-lg shadow-lg bg-slate-900 p-4 hover:shadow-2xl transition-shadow
-              bg-cover"
-              // <div>
+              className="
+                border-4 border-blue-400 relative
+                text-white w-[400px] h-[356px]
+                overflow-y-auto rounded-lg shadow-lg
+                bg-slate-900 p-4 hover:shadow-2xl
+                transition-shadow bg-cover
+              "
               style={{ backgroundImage: `url(${movie.imgurl})` }}
-              // className="h-64 w-full bg-cover bg-center"
-              // </div>
             >
               <div>
-                {/* <img src={movie.imgurl} alt="MovieImg" /> */}
-                <p className='text-white text-lg mb-4'>Posted By: <span className='text-blue-300'>{movie.userName || "Anonymous"}</span></p>
-                <header className="text-xl font-bold mb-2">{movie.name}</header>
+                <div className="flex justify-between items-start">
+                  <p className="text-white text-lg mb-4">
+                    Posted By:{" "}
+                    <span className="text-blue-300">
+                      {movie.userName || "Anonymous"}
+                    </span>
+                  </p>
+
+                  <p
+                    onClick={() =>
+                      setActiveMovieId(
+                        activeMovieId === movie._id ? null : movie._id
+                      )
+                    }
+                    className="text-blue-500 font-bold text-xl cursor-pointer animate-pulse px-3"
+                  >
+                    AI
+                  </p>
+
+                  {activeMovieId === movie._id && (
+                    <button
+                      onClick={() =>
+                        handleSendMoviesDataToAi(
+                          movie.name,
+                          movie.genre
+                        )
+                      }
+                      disabled={searchLoading}
+                      className=" absolute right-4 top-12 bg-slate-800 px-4 py-2 text-red-400 rounded-lg hover:bg-white hover:text-black border-2 cursor-pointer transition duration-150
+                      "
+                    >
+                      Recommend similar movies
+                    </button>
+                  )}
+                </div>
+
+                <header className="text-xl font-bold mb-2">
+                  {movie.name}
+                </header>
+
                 <p className="underline">
                   <strong>
-                    <span className="rounded-[15px] bg-blue-800">Director:</span>
+                    <span className="rounded-[15px] bg-blue-800">
+                      Director:
+                    </span>
                   </strong>{" "}
                   {movie.director}
                 </p>
+
                 <p className="underline">
                   <strong>
-                    <span className="rounded-[15px] bg-blue-800">Rating:</span>
+                    <span className="rounded-[15px] bg-blue-800">
+                      Rating:
+                    </span>
                   </strong>{" "}
                   {movie.rating} / 5
                 </p>
+
                 <p className="underline">
                   <strong>
-                    <span className="rounded-[15px] bg-blue-800">Genre:</span>
+                    <span className="rounded-[15px] bg-blue-800">
+                      Genre:
+                    </span>
                   </strong>{" "}
                   {movie.genre}
                 </p>
+
                 <p className="underline">
                   <strong>
-                    <span className="rounded-[15px] bg-blue-800">About:</span>
+                    <span className="rounded-[15px] bg-blue-800">
+                      About:
+                    </span>
                   </strong>{" "}
                   {movie.about}
                 </p>
+
                 <p className="underline">
                   <strong>
-                    <span className="rounded-[15px] bg-blue-800">Your View:</span>
+                    <span className="rounded-[15px] bg-blue-800">
+                      Your View:
+                    </span>
                   </strong>{" "}
                   {movie.urview}
                 </p>
+
                 <p className="underline">
                   <strong>
-                    <span className="rounded-[15px] bg-blue-800">Reports Left:</span>
+                    <span className="rounded-[15px] bg-blue-800">
+                      Reports Left:
+                    </span>
                   </strong>{" "}
                   {movie.reportCount}
                 </p>
+
                 <p className="underline">
                   <strong>
-                    <span className="rounded-[15px] bg-blue-800">Like(s):</span>
+                    <span className="rounded-[15px] bg-blue-800">
+                      Like(s):
+                    </span>
                   </strong>{" "}
                   {movie.likes}
                 </p>
-
-                {/* Uncomment when handleReport is implemented */}
-                {/* <button
-                  className="text-red-600 p-3 hover:border rounded-full"
-                  onClick={() => handleReport(movie._id)}
-                >
-                  Report
-                </button> */}
               </div>
             </div>
           ))
         ) : !searchLoading ? (
           <div className="flex flex-col justify-center items-center mt-10">
-            <p className="text-gray-600 text-lg">Loading, Please Wait...</p>
+            <p className="text-gray-600 text-lg">
+              Loading, Please Wait...
+            </p>
             <i className="fa-solid fa-gear text-6xl animate-spin mt-4"></i>
           </div>
         ) : (
-          <div>
-            <p>No data found!</p>
-          </div>
+          <p>No data found!</p>
         )}
       </div>
     </div>
   );
 }
+
