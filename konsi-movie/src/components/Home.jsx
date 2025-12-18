@@ -344,6 +344,9 @@ import ChatWithAI from "./ChatWithAI";
 export default function Home() {
   const [searchLoading, setSearchLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [activeChatMovieId, setActiveChatMovieId] = useState(null);
+  const [error,setError] = useState("");
+  const [success,setSuccess] = useState("");
 
   const [activeMovieId, setActiveMovieId] = useState(null);
 
@@ -374,11 +377,11 @@ export default function Home() {
   }, [setMovies]);
 
   const handleSendMoviesDataToAi = async (movieName, movieGenre) => {
-    if (searchLoading) return;
-
+    // if (searchLoading) return;
+    
+    console.log("Data Sent");
     try {
       setSearchLoading(true);
-
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/movieai/api/sendmoviesdata`,
         { movieName, movieGenre },
@@ -388,10 +391,12 @@ export default function Home() {
           },
         }
       );
-
+      console.log("recommended movies: ",response.data?.output);
       setAnswer(response.data?.output || "");
+      setSuccess(response.data?.message || "Something");
     } catch (error) {
       console.error("Error in sending movie data");
+      setError(error.response?.data?.message || "Something");
     } finally {
       setSearchLoading(false);
     }
@@ -411,7 +416,11 @@ export default function Home() {
         </div>
 
         {openModal && (
-          <ChatWithAI openModal={openModal} recommendMovies={answer} onClose={()=>setOpenModal(!openModal)}/>
+          <ChatWithAI 
+            openModal={openModal} 
+            recommendMovies={answer} 
+            onClose={()=>setOpenModal(!openModal)}
+          />
         )}
 
         <h1 className="text-3xl font-bold text-blue-400">
@@ -469,18 +478,25 @@ export default function Home() {
 
                   {activeMovieId === movie._id && (
                     <button
-                      onClick={() =>
-                        handleSendMoviesDataToAi(
-                          movie.name,
-                          movie.genre
-                        )
-                      }
-                      disabled={searchLoading}
-                      className=" absolute right-4 top-12 bg-slate-800 px-4 py-2 text-red-400 rounded-lg hover:bg-white hover:text-black border-2 cursor-pointer transition duration-150
-                      "
+                    onClick={() => {
+                        handleSendMoviesDataToAi(movie.name,movie.genre);
+                        setActiveChatMovieId(movie._id);
+                      }}
+                      className=" absolute right-4 top-12 bg-slate-800 px-4 py-2 text-red-400 rounded-lg hover:bg-white hover:text-black border-2 cursor-pointer transition duration-150"
                     >
                       Recommend similar movies
                     </button>
+                    
+                  )}
+                  {
+                    activeChatMovieId === movie._id && (
+                      <ChatWithAI
+                        openModal={true}
+                        recommendMovies={answer}
+                        error={error}
+                        success={success}
+                        onClose={() => setActiveChatMovieId(null)}
+                      />
                   )}
                 </div>
 
@@ -560,11 +576,10 @@ export default function Home() {
             </p>
             <i className="fa-solid fa-gear text-6xl animate-spin mt-4"></i>
           </div>
-        ) : (
+        ) : searchLoading && (
           <p>No data found!</p>
         )}
       </div>
     </div>
   );
 }
-

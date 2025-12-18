@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-export default function ChatWithAI({openModal,recommendMovies,onClose}) {
+export default function ChatWithAI({openModal,recommendMovies,onClose,error,success}) {
   const [ques, setQues] = useState("");
   const [ans, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
+  
 
   useEffect(() => {
     if (recommendMovies) {
@@ -31,11 +32,13 @@ export default function ChatWithAI({openModal,recommendMovies,onClose}) {
         }
       );
 
-      setAnswer(response.data.output);
+      setAnswer(response.data?.output);
       setQues("");
+      
     } catch (error) {
       console.error(error);
       alert("Error in sending question");
+      
     } finally {
       setLoading(false);
     }
@@ -60,21 +63,32 @@ export default function ChatWithAI({openModal,recommendMovies,onClose}) {
 
       <div className="bg-blue-100 h-[350px] w-[370px] p-4 m-3 rounded-2xl overflow-y-auto overflow-x-hidden text-sm">
         {loading ? (
-          <p className="animate-pulse text-red-500 font-bold">
-            Loading...
-          </p>
+          <div className="flex gap-4 justify-center items-center">
+            <p className="text-yellow-500 font-bold">
+              Loading...
+            </p>
+            <div className="flex items-center">
+                <div className="w-6 h-6 border-4 border-neutral-400 border-t-neutral-300 rounded-full animate-spin"></div>
+              </div>
+          </div>
         ) : (
-            <div className="whitespace-pre-wrap break-words text-black text-center">
-            {/* <Markdown remarkPlugins={[remarkGfm]} >
+          <div className="whitespace-pre-wrap break-words text-black text-left">
+            <Markdown remarkPlugins={[remarkGfm]} >
                 {ans || "Click AI on a movie for recommendation based on that movie🎬"}
-            </Markdown> */}
-                <pre>
+            </Markdown>
+                {/* <pre>
                     {ans || "Ask something or click AI on a movie 🎬"}
-                </pre>
+                </pre> */}
             </div>
         )}
       </div>
-
+        {
+          success ? (
+            <p className="text-center text-green-500 text-lg font-bold italic">{success}</p>
+          ) : error && (
+            <p className="text-center text-red-500 text-lg font-bold italic">{error}</p>
+          )
+        }
       {/* <form onSubmit={CallAI} className="flex flex-col">
         <textarea
           value={ques}
