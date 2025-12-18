@@ -393,10 +393,10 @@ export default function Home() {
       );
       console.log("recommended movies: ",response.data?.output);
       setAnswer(response.data?.output || "");
-      setSuccess(response.data?.message || "Something");
+      setSuccess(response.data?.message || "Successfully fetched output");
     } catch (error) {
       console.error("Error in sending movie data");
-      setError(error.response?.data?.message || "Something");
+      setError(error.response?.data?.message || "Error in fetching Output");
     } finally {
       setSearchLoading(false);
     }
