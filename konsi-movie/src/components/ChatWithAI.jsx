@@ -86,7 +86,7 @@ export default function ChatWithAI({openModal,recommendMovies,onClose,error,succ
           success ? (
             <p className="text-center text-green-500 text-lg font-bold italic">{success}</p>
           ) : error && (
-            <p className="text-center text-red-500 text-lg font-bold italic">{error}</p>
+            <p className="text-center text-red-500 text-lg font-bold italic p-2">{error}</p>
           )
         }
       {/* <form onSubmit={CallAI} className="flex flex-col">
