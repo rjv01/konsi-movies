@@ -391,8 +391,8 @@ export default function Home() {
           },
         }
       );
-      console.log("recommended movies: ",response.data?.output);
-      setAnswer(response.data?.output || "");
+      console.log("Recommended movies based on",movieName,response.data?.output);
+      setAnswer("Recommended movies based on: ",movieName,response.data?.output || "");
       setSuccess(response.data?.message || "Successfully fetched output");
     } catch (error) {
       console.error("Error in sending movie data");
